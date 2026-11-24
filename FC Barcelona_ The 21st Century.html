@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FC Barcelona: The 21st Century</title>
+<meta name="color-scheme" content="dark">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{--blue:#004D98;--red:#A50044;--gold:#EDBB00;--plat:#F5F5F5;--bg:#070b16;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{background:var(--bg);color:var(--plat);font-family:Inter,Roboto,sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.09;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .93 0 0 0 0 .73 0 0 0 0 .3 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1,h2,h3,.hd{font-family:Montserrat,Inter,sans-serif;font-weight:900;letter-spacing:-.02em}
+.wrap{max-width:1100px;margin:0 auto;padding:6rem 1.25rem}
+.tag{color:var(--gold);font:600 .75rem Montserrat;letter-spacing:.25em;text-transform:uppercase}
+.h2{font-size:clamp(2rem,6vw,4rem);line-height:1.05;margin:.6rem 0 1.2rem}
+.lead{color:#c9cfdd;max-width:46rem;line-height:1.7}
+header{position:fixed;top:0;left:0;right:0;z-index:60;padding:calc(env(safe-area-inset-top,0px) + .7rem) 1.25rem .7rem;display:flex;justify-content:space-between;align-items:center;background:rgba(7,11,22,.55);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+.logo{font:900 1rem Montserrat;letter-spacing:.08em}.logo b{color:var(--gold)}
+#bg{background:none;border:0;color:var(--plat);font-size:1.6rem;cursor:pointer;padding:.2rem .5rem}
+#ov{position:fixed;inset:0;z-index:55;background:linear-gradient(135deg,var(--blue),#0a1030 55%,var(--red));display:flex;flex-direction:column;justify-content:center;padding:2rem 10vw;gap:.6rem;opacity:0;pointer-events:none;transition:.4s}
+#ov.on{opacity:1;pointer-events:auto}
+#ov a{font:900 clamp(2rem,8vw,4.5rem) Montserrat;color:var(--plat);text-decoration:none;transition:.3s}
+#ov a:hover{color:var(--gold);padding-left:1rem}
+.btn{display:inline-block;background:linear-gradient(90deg,var(--blue),var(--red));color:#fff;font:800 .85rem Montserrat;letter-spacing:.12em;text-transform:uppercase;padding:1rem 2rem;border-radius:99px;text-decoration:none;border:0;cursor:pointer;transition:.3s}
+.btn:hover{box-shadow:0 0 30px var(--red),0 0 60px rgba(0,77,152,.7);transform:translateY(-2px)}
+#hero{position:relative;height:100svh;min-height:560px;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0 1.25rem;background:radial-gradient(ellipse at 50% 110%,rgba(165,0,68,.55),transparent 60%),radial-gradient(ellipse at 50% -10%,rgba(0,77,152,.7),transparent 55%)}
+.big{position:absolute;font:900 min(60vw,520px) Montserrat;line-height:1;opacity:.13;background:linear-gradient(180deg,var(--blue),var(--red));-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none}
+.stripes{position:absolute;inset:-10% 0;background:repeating-linear-gradient(90deg,rgba(0,77,152,.16) 0 7vw,rgba(165,0,68,.16) 7vw 14vw);mask-image:linear-gradient(transparent,#000 40%,transparent)}
+.sc{position:absolute;bottom:1.5rem;left:50%;width:22px;height:36px;margin-left:-11px;border:2px solid var(--plat);border-radius:12px;opacity:.7}
+.sc::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:7px;margin-left:-2px;background:var(--gold);border-radius:2px;animation:dn 1.5s infinite}
+@keyframes dn{to{transform:translateY(12px);opacity:0}}
+.grid2{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:2rem}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:1.3rem;backdrop-filter:blur(8px)}
+.card .n{font:900 2rem Montserrat;color:var(--gold)}
+.card p{color:#b9c0d2;font-size:.9rem;line-height:1.55;margin-top:.3rem}
+.era{background:linear-gradient(180deg,var(--bg),#0c1530 50%,var(--bg))}
+.tl{border-left:2px solid var(--blue);margin:2rem 0 0 .4rem;padding-left:1.5rem}
+.tl div{position:relative;margin-bottom:1.5rem}
+.tl div::before{content:"";position:absolute;left:-1.95rem;top:.35rem;width:.75rem;height:.75rem;background:var(--red);border-radius:50%;box-shadow:0 0 12px var(--red)}
+.tl b{color:var(--gold);font-family:Montserrat}
+.tl span{display:block;color:#b9c0d2;font-size:.92rem;line-height:1.55}
+blockquote{border-left:3px solid var(--gold);padding:.4rem 1.2rem;margin:2rem 0;font:600 1.15rem/1.5 Montserrat}
+blockquote small{display:block;color:#98a1b8;font:400 .85rem Inter;margin-top:.4rem}
+#tt{background:#050810}
+#trophies{overflow:hidden}
+#track{display:flex;flex-direction:column;gap:1rem;padding:0 1.25rem 5rem}
+.yc{background:linear-gradient(160deg,rgba(0,77,152,.55),rgba(165,0,68,.4));border:1px solid rgba(237,187,0,.35);border-radius:1.2rem;padding:1.6rem;cursor:pointer;transition:.3s;text-align:left;color:var(--plat)}
+.yc:hover{box-shadow:0 0 35px rgba(237,187,0,.35);transform:translateY(-4px)}
+.yc .y{font:900 4rem Montserrat;color:var(--gold);line-height:1}
+.yc em{font-style:normal;color:#c9cfdd;font-size:.9rem;display:block;margin-top:.7rem}
+@media(min-width:768px){#trophies{height:100svh;display:flex;flex-direction:column;justify-content:center}#track{flex-direction:row;width:max-content;padding:2rem 10vw}.yc{width:min(340px,70vw);flex:none;height:300px}}
+#md{position:fixed;inset:0;z-index:70;background:rgba(3,5,12,.82);backdrop-filter:blur(10px);display:none;place-items:center;padding:1.2rem}
+#md.on{display:grid}
+#mb{background:#0b1226;border:1px solid var(--gold);border-radius:1.3rem;max-width:520px;width:100%;overflow:hidden}
+.duo{background:linear-gradient(135deg,var(--blue),var(--red));display:grid;place-items:center;font:900 4rem Montserrat;color:rgba(245,245,245,.9);height:130px}
+#mb .in{padding:1.4rem}#mb li{color:#c9cfdd;margin:.4rem 0 0 1.1rem;list-style:disc;font-size:.93rem}
+.lg{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));margin-top:2rem}
+.pc{position:relative;border-radius:1rem;overflow:hidden;min-height:310px;display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem;background:linear-gradient(160deg,var(--blue),#0a0f24 50%,var(--red))}
+.pc .m{position:absolute;top:.5rem;right:1rem;font:900 7rem Montserrat;opacity:.18;filter:grayscale(1);transition:.5s}
+.pc{filter:grayscale(1) contrast(1.15);transition:filter .5s}
+.pc:hover,.pc:focus{filter:none}
+.pc .t{color:#d3d9e8;font-size:.88rem;line-height:1.5;margin-top:.5rem}
+@media(hover:hover){.pc .t{max-height:0;opacity:0;overflow:hidden;transition:.5s}.pc:hover .t,.pc:focus .t{max-height:12rem;opacity:1}}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:.6rem;margin-top:2rem;background:linear-gradient(135deg,rgba(0,77,152,.35),rgba(165,0,68,.35));border:2px solid var(--gold);border-radius:1.2rem;padding:1.3rem;text-align:center}
+.vs .nm{font:900 1.2rem Montserrat}.vs .r{padding:.55rem 0;border-top:1px solid rgba(255,255,255,.12);font-size:.88rem;color:#d3d9e8}
+.vs .c{font:800 .7rem Montserrat;color:var(--gold);padding:.55rem .3rem;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;max-width:90px}
+#pitch{position:relative;aspect-ratio:3/4;max-width:460px;margin:1.5rem auto;border-radius:1rem;border:2px solid rgba(245,245,245,.5);background:repeating-linear-gradient(180deg,#0c5a2e 0 12.5%,#0f6a36 12.5% 25%)}
+#pitch::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:2px solid rgba(245,245,245,.5)}
+.sl{position:absolute;width:62px;height:62px;margin:-31px 0 0 -31px;border-radius:50%;border:2px dashed rgba(245,245,245,.7);display:grid;place-items:center;font:700 .62rem/1.1 Montserrat;text-align:center;cursor:pointer;color:rgba(245,245,245,.8)}
+.sl.f{border:2px solid var(--gold);background:linear-gradient(135deg,var(--blue),var(--red));color:#fff}
+.sl.ov{background:rgba(237,187,0,.3)}
+#pool{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:var(--plat);padding:.5rem .9rem;border-radius:99px;font-size:.85rem;cursor:grab}
+.chip.s{border-color:var(--gold);background:rgba(237,187,0,.2)}
+footer{text-align:center;padding:5rem 1.25rem 4rem;border-top:1px solid rgba(255,255,255,.08)}
+.crest{width:96px;margin:0 auto 1.2rem;animation:fl 4s ease-in-out infinite;filter:drop-shadow(0 0 18px rgba(237,187,0,.4))}
+@keyframes fl{50%{transform:translateY(-8px) rotate(2deg)}}
+footer a{color:#b9c0d2;margin:0 .7rem;text-decoration:none;font-size:.85rem}footer a:hover{color:var(--gold)}
+#ball{position:fixed;width:26px;height:26px;margin:-13px;border-radius:50%;pointer-events:none;z-index:99;background:radial-gradient(circle at 35% 30%,#fff,#aab 70%);box-shadow:0 0 12px rgba(237,187,0,.7);display:none;font-size:0}
+@media(hover:hover) and (pointer:fine){body,a,button,.yc,.chip,.sl{cursor:none}#ball{display:block}}
+#ov{overflow-y:auto;justify-content:flex-start;padding-top:5rem}#ov a{font-size:clamp(1.4rem,5.5vw,3rem)}
+#pr{position:fixed;top:0;left:0;right:0;height:3px;z-index:80;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--blue),var(--gold),var(--red))}
+.mq{overflow:hidden;white-space:nowrap;border-block:1px solid rgba(237,187,0,.3);padding:.8rem 0;background:#050810}
+.mq div{display:inline-block;animation:mq 35s linear infinite;font:800 .8rem Montserrat;letter-spacing:.25em;color:var(--gold)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.sco{font:900 2.4rem Montserrat;color:var(--gold);line-height:1}
+.btn:disabled{opacity:.4;pointer-events:none}
+#ball{transition:transform .2s}
+.bar{height:8px;border-radius:9px;background:rgba(255,255,255,.1);margin:.3rem 0 .9rem;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--gold));animation:gr 1.2s ease-out}
+@keyframes gr{from{width:0}}
+#res ul{margin:1rem 0 0 1.1rem;list-style:disc;color:#c9cfdd;font-size:.92rem;line-height:1.6}
+.pg{width:100%;font:700 .7rem Montserrat;color:#98a1b8;letter-spacing:.2em;text-transform:uppercase;margin:.6rem 0 .1rem}
+.cl{cursor:pointer}.cl::after{content:'Подробнее →';display:block;margin-top:.8rem;color:var(--gold);font:700 .72rem Montserrat;letter-spacing:.12em}.cl:hover,.cl:focus-visible{border-color:var(--gold);outline:0}
+#mb{max-height:88svh;overflow-y:auto}#mb .duo{font-size:2.2rem;text-align:center;padding:0 1rem}
+#crisis{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0,rgba(165,0,68,.4),transparent 60%),#07070d;animation:pl 6s ease-in-out infinite}
+@keyframes pl{50%{background-color:#0d0710}}
+.alr{overflow:hidden;white-space:nowrap;background:var(--red);padding:.5rem 0}
+.alr div{display:inline-block;animation:mq 22s linear infinite;font:800 .72rem Montserrat;letter-spacing:.3em}
+.gl{animation:gl 3.5s infinite}
+@keyframes gl{0%,90%,100%{text-shadow:none}93%{text-shadow:3px 0 var(--red),-3px 0 var(--blue)}96%{text-shadow:-3px 0 var(--red),3px 0 var(--blue)}}
+.ring{width:170px;height:170px;display:block;margin:0 auto .6rem}
+.ring circle{fill:none;stroke-width:12}
+.ring .bg2{stroke:rgba(255,255,255,.1)}
+.ring .fg{stroke:var(--red);stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;stroke-dasharray:440;stroke-dashoffset:440;filter:drop-shadow(0 0 8px var(--red))}
+.bars .row{display:grid;grid-template-columns:84px 1fr 40px;gap:.7rem;align-items:center;margin:.8rem 0;font-size:.88rem}
+.bars .bt{height:14px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}
+.bars .bt i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:9px}
+.crl{position:relative;margin-top:2.5rem;padding-left:2rem}
+.crl::before{content:'';position:absolute;left:.45rem;top:0;bottom:0;width:2px;background:rgba(255,255,255,.1)}
+.ln2{position:absolute;left:.45rem;top:0;width:2px;height:100%;background:linear-gradient(var(--red),var(--gold));transform-origin:top;transform:scaleY(0);box-shadow:0 0 12px var(--red)}
+.crl .card{position:relative;margin-bottom:1rem}
+.crl .card::before{content:'';position:absolute;left:-1.95rem;top:1.5rem;width:.8rem;height:.8rem;border-radius:50%;background:var(--red);box-shadow:0 0 14px var(--red)}
+</style>
+</head>
+<body>
+<div id="ball"></div><div id="pr"></div>
+<header><div class="logo">BLAUGRANA<b>·</b>XXI</div><button id="bg" aria-label="Меню">☰</button></header>
+<nav id="ov"><a href="#era">Эра великих</a><a href="#pep">Золотая эра</a><a href="#coaches">Тренеры</a><a href="#wins">Победы</a><a href="#trophies">Трофеи</a><a href="#falls">Взлёт и падение</a><a href="#crisis">Кризис</a><a href="#events">События</a><a href="#legends">Наследие</a><a href="#future">Возрождение</a><a href="#talents">Таланты</a><a href="#masia">Ла Масия</a><a href="#game">Мечта XXI</a></nav>
+
+<section id="hero">
+<div class="stripes"></div><div class="big h-bg" style="left:50%;transform:translateX(-50%)">XXI</div>
+<div style="position:relative;z-index:2;max-width:880px">
+<p class="tag">Больше, чем клуб · 2000 — сегодня</p>
+<h1 style="font-size:clamp(2.4rem,9vw,6rem);line-height:1;margin:1rem 0">FC Barcelona:<br>The 21st Century</h1>
+<p class="lead" style="margin:0 auto 2rem">От Рональдиньо до Ламина Ямаля. История величия в цифрах и лицах.</p>
+<a class="btn" href="#era">Начать путешествие</a>
+<p style="margin-top:1.5rem;font-size:.75rem;color:#8b94ab">Независимый проект болельщиков. Не официальный сайт клуба.</p>
+</div><div class="sc"></div>
+</section>
+
+<div class="mq"><div>ЛИГА ЧЕМПИОНОВ 2006 · 2009 · 2011 · 2015 ✦ СЕКСТАБЛЬ 2009 ✦ ТРЕБЛ 2015 ✦ MES QUE UN CLUB ✦ LA MASIA ✦ ЛИГА ЧЕМПИОНОВ 2006 · 2009 · 2011 · 2015 ✦ СЕКСТАБЛЬ 2009 ✦ ТРЕБЛ 2015 ✦ MES QUE UN CLUB ✦ LA MASIA ✦ </div></div>
+<div class="grid2" style="max-width:1100px;margin:0 auto;padding:3rem 1.25rem 0"><div class="card"><div class="n"><span class="cn2" data-n="13" data-d="0">0</span></div><p>титулов Ла Лиги с 2000 года</p></div><div class="card"><div class="n cnt" data-n="4">0</div><p>победы в Лиге чемпионов</p></div><div class="card"><div class="n cnt" data-n="8">0</div><p>Кубков Испании</p></div><div class="card"><div class="n cnt" data-n="3">0</div><p>Клубных чемпионата мира</p></div></div>
+<section id="era" class="era"><div class="wrap">
+<p class="tag">2000-е · Наследие</p><h2 class="h2">Эра великих</h2>
+<p class="lead">Начало века — годы сомнений: в 2003 году президентом избран Жоан Лапорта, тренером становится Франк Райкард, а в команду приходит Рональдиньо из ПСЖ. Клуб, уставший от «галактикос» Мадрида, снова учится побеждать — красиво и своим путём.</p>
+<div class="grid2">
+<div class="card"><div class="n">2005</div><p>Рональдиньо получает «Золотой мяч», а «Камп Ноу» и «Сантьяго Бернабеу» аплодируют ему стоя.</p></div>
+<div class="card"><div class="n">2006</div><p>Первый титул Лиги чемпионов эпохи: 2:1 над «Арсеналом» в Париже, голы Это’О и Беллетти.</p></div>
+<div class="card"><div class="n">Ядро</div><p>Рональдиньо, Деку, Это’О, Пуйоль, Хави, Иньеста, Вальдес. И подросток из Ла Масии — Лионель Месси.</p></div>
+</div>
+<div class="tl">
+<div><b>2003</b><span>Лапорта, Райкард, Рональдиньо — перезагрузка клуба.</span></div>
+<div><b>2004/05</b><span>Чемпионство после шести лет паузы. Дебют Месси за основу — 16 октября 2004.</span></div>
+<div><b>2006</b><span>Дубль: Ла Лига и Лига чемпионов. «Взлёт» новой эры.</span></div>
+<div><b>2007–2008</b><span>Годы без трофеев: «Падение» и поиск новой идеи. Дальше — Гвардиола.</span></div>
+</div></div></section>
+
+<section id="pep"><div class="wrap">
+<p class="tag">2008–2012 · Философия</p><h2 class="h2">Золотая эра Пепа</h2>
+<p class="lead">Хосеп Гвардиола, выпускник Ла Масии, строит команду вокруг Хави, Иньесты, Бускетса и Месси. Давление, владение, треугольники. За четыре года — 14 трофеев из 19 возможных.</p>
+<div class="grid2">
+<div class="card"><div class="n">6 из 6</div><p>Секстабль 2009: Ла Лига, Кубок Испании, Лига чемпионов, Суперкубок Испании, Суперкубок УЕФА, Клубный ЧМ.</p></div>
+<div class="card"><div class="n">6:2</div><p>«Бернабеу», май 2009. Одна из главных ночей эры.</p></div>
+<div class="card"><div class="n">5:0</div><p>«Эль-Класико» в ноябре 2010 — эталон тики-таки.</p></div>
+</div>
+<p class="tag" style="margin-top:2.5rem">Схема тики-таки · нажмите, чтобы запустить розыгрыш</p>
+<svg id="tk" viewBox="0 0 400 220" style="width:100%;max-width:560px;margin-top:.8rem;cursor:pointer" aria-label="Схема передач">
+<g stroke="rgba(0,77,152,.9)" stroke-width="2" fill="none" id="ln"></g><g id="nd"></g><circle id="bl" r="7" fill="#EDBB00" cx="200" cy="190"/></svg>
+<blockquote>Качество без результата бессмысленно, результат без качества — скучен.<small>Йохан Кройф, идеолог барселонской школы (парафраз)</small></blockquote>
+<p class="lead">Ночь 25 ноября 2012 года: против «Леванте» на поле выходят одиннадцать воспитанников Ла Масии. Это и есть «Философия» в чистом виде.</p>
+</div></section>
+
+<section id="coaches"><div class="wrap"><p class="tag">Тренеры</p><h2 class="h2">Архитекторы эпохи</h2><p class="lead">С 2003 года на скамейке сменились десять тренеров. Менялись схемы и лица, но идея оставалась прежней: владеть мячом, играть вперёд и доверять Ла Масии.</p><div class="grid2" id="co"></div></div></section>
+<section id="wins" style="background:#0a0f20"><div class="wrap"><p class="tag">Победы</p><h2 class="h2">Великие победы</h2><p class="lead">Ночи, ради которых болеют всю жизнь.</p><div class="grid2" id="wn"></div></div></section>
+<section id="trophies"><div style="padding:6rem 1.25rem 1rem;max-width:1100px;margin:0 auto;width:100%">
+<p class="tag">Трофеи</p><h2 class="h2" style="margin-bottom:.3rem">Золотые сезоны</h2><p class="lead">Нажмите на год — откроются капитан, тренер и главные цифры. На компьютере листайте скроллом.</p></div>
+<div id="track"></div></section>
+
+<section id="falls"><div class="wrap"><p class="tag" style="color:#ff6b9a">Взлёт и падение</p><h2 class="h2">Поражения, которые закалили</h2><p class="lead">Настоящий болельщик помнит не только Рим-2009, но и Рим-2018. История клуба — это и боль тоже, и каждое падение здесь заканчивалось возрождением.</p><div class="grid2" id="fl"></div></div></section>
+<section id="crisis"><div class="alr"><div>ФИНАНСОВЫЙ КРИЗИС ✦ ДОЛГ ✦ ЛИМИТ ЗАРПЛАТ ✦ УХОД МЕССИ ✦ ФИНАНСОВЫЙ КРИЗИС ✦ ДОЛГ ✦ ЛИМИТ ЗАРПЛАТ ✦ УХОД МЕССИ ✦ ФИНАНСОВЫЙ КРИЗИС ✦ ДОЛГ ✦ ЛИМИТ ЗАРПЛАТ ✦ УХОД МЕССИ ✦ </div></div><div class="wrap"><p class="tag" style="color:#ff6b9a">Кризис клуба</p><h2 class="h2 gl">Когда величие стоило слишком дорого</h2><p class="lead">Золотая эра оставила клубу трофеи, но и тяжёлое наследство: гигантские зарплаты, дорогие трансферы без отдачи, пандемию и конфликт на самом верху. К 2021 году «Барса» не смогла сохранить даже Месси. Эта история — про то, как клуб оказался на краю и как выбирался обратно. Нажмите на любой этап, чтобы узнать подробности.</p><div class="grid2" style="align-items:stretch"><div class="card" style="text-align:center"><svg class="ring" viewBox="0 0 160 160"><circle class="bg2" cx="80" cy="80" r="70"/><circle class="fg" cx="80" cy="80" r="70"/><text x="80" y="90" text-anchor="middle" fill="#F5F5F5" font-size="28" font-weight="800" font-family="Montserrat">100%+</text></svg><p>Доля зарплат в выручке в 2020–2021 годах превышала 100% (оценка руководства клуба).</p></div><div class="card"><div class="n"><span class="cn2" data-n="1.35" data-d="2">0</span> млрд €</div><p>Общий долг клуба по оценке нового руководства в 2021 году.</p></div><div class="card"><div class="n"><span class="cn2" data-n="222" data-d="0">0</span> млн €</div><p>Столько клуб получил за Неймара в 2017-м — и потратил на дорогие покупки.</p></div></div><div class="card bars" style="margin-top:1rem"><p class="tag">Крупнейшие вложения 2017–2019, млн евро (с бонусами, по данным прессы)</p><div class="row"><span>Коутиньо</span><div class="bt"><i data-w="100"></i></div><b>160</b></div><div class="row"><span>Дембеле</span><div class="bt"><i data-w="91"></i></div><b>145</b></div><div class="row"><span>Гризманн</span><div class="bt"><i data-w="75"></i></div><b>120</b></div><div class="row"><span>Де Йонг</span><div class="bt"><i data-w="54"></i></div><b>86</b></div></div><div class="crl" id="crl"></div><p class="lead" style="margin-top:2rem">Главный урок кризиса: в «Барсе» ничего не держится на одной звезде. Опора клуба — Ла Масия, и именно она вывела команду из пропасти.</p></div></section>
+<section id="events"><div class="wrap"><p class="tag">Хроника</p><h2 class="h2">Главные события</h2><div class="tl" id="evs"></div></div></section>
+<section id="legends" style="background:#0a0f20"><div class="wrap">
+<p class="tag">Легенды и наследие</p><h2 class="h2">Те, кто сделал век</h2>
+<p class="lead">Наведите курсор (или коснитесь) — портрет оживёт. Цифры: матчи за клуб во всех турнирах.</p>
+<div class="lg" id="lg"></div></div></section>
+
+<section id="future"><div class="wrap">
+<p class="tag">2020-е · Возрождение</p><h2 class="h2">Современность и будущее</h2>
+<p class="lead">Август 2020: 2:8 от «Баварии» в Лиссабоне. Лето 2021: уход Месси на фоне финансового кризиса. Но Ла Масия снова даёт клубу новое поколение: Педри (Golden Boy 2021), Гави (Kopa Trophy 2022), Ламин Ямаль (Kopa Trophy 2024, чемпион Европы в 17 лет). Ханси Флик приводит команду к чемпионству, Кубку и Суперкубку Испании в 2025-м — включая 5:2 над «Реалом» в финале Суперкубка.</p>
+<div class="vs"><div><div class="nm" style="color:#7db4ff">МЕССИ</div><div class="r">17 л. 114 дн.</div><div class="r">17 лет</div><div class="r">Олимпиада-2008</div></div>
+<div><div class="nm">&nbsp;</div><div class="c">ДЕБЮТ</div><div class="c">ПЕРВЫЙ ГОЛ</div><div class="c">ТИТУЛ СБОРНОЙ</div></div>
+<div><div class="nm" style="color:#ff6b9a">ЯМАЛЬ</div><div class="r">15 л. 290 дн.</div><div class="r">16 лет</div><div class="r">Евро-2024</div></div></div>
+</div></section>
+
+<section id="talents"><div class="wrap"><p class="tag">Будущее · Таланты</p><h2 class="h2">Поколение, которое придёт за золотом</h2><p class="lead">Ямаль, Педри, Гави, Кубарси и Балде — это уже не обещание, а основа клуба. Нажмите на карточку, чтобы узнать о каждом подробнее.</p><div class="grid2" id="ta"></div></div></section>
+<section id="masia" style="background:#0a0f20"><div class="wrap"><p class="tag">La Masia</p><h2 class="h2">Академия, которая растит философию</h2><p class="lead">La Masia — не просто школа, а главный источник «Наследия» клуба. Старинный дом Can Planes 1702 года стал общежитием юных футболистов в 1979-м, а в 2011-м академия переехала в современное здание в Ciutat Esportiva Joan Gamper. Идея, которую в 1988-м принёс Йохан Кройф, проста: один стиль игры для всех возрастов.</p><div class="grid2"><div class="card"><div class="n">2000</div><p>В 13 лет в Ла Масию приезжает Месси.</p></div><div class="card"><div class="n">2010</div><p>Тройка «Золотого мяча»: Месси, Иньеста, Хави — все воспитанники академии.</p></div><div class="card"><div class="n">2012</div><p>25 ноября против «Леванте» на поле выходят одиннадцать воспитанников.</p></div><div class="card"><div class="n">2010</div><p>В финале ЧМ за сборную Испании выходят семь игроков «Барсы».</p></div></div><div class="tl"><div><b>1988</b><span>Кройф становится тренером «Барсы» и закладывает единый стиль для всех возрастов.</span></div><div><b>2008</b><span>Гвардиола, сам воспитанник Ла Масии, доверяет молодым и строит команду на выпускниках.</span></div><div><b>2021</b><span>Месси уходит, и клуб снова делает ставку на академию: Гави, Кубарси, Балде, Ямаль.</span></div><div><b>Сегодня</b><span>Новое поколение возвращает «Барсе» философию, с которой начинался этот век.</span></div></div></div></section>
+<section id="game" style="background:#0a0f20"><div class="wrap" style="text-align:center">
+<p class="tag">Игра</p><h2 class="h2">Собери состав мечты XXI века</h2>
+<p class="lead" style="margin:0 auto">Схема 4-3-3. Игроки расставляются по своим линиям: перетащите футболиста на позицию или коснитесь его, затем позиции. Когда все 11 мест заняты, нажмите «Оценить» и получите разбор состава.</p>
+<div id="pitch"></div><div id="pool"></div><p id="msg" style="margin:1rem 0;color:var(--gold);min-height:1.5rem"></p>
+<button class="btn" id="ev" disabled>Оценить состав</button> <button class="btn" id="rs" style="background:#1b2238">Сбросить</button><div id="res" class="card" style="display:none;text-align:left;max-width:560px;margin:2rem auto 0"></div></div></section>
+
+<footer>
+<svg class="crest" viewBox="0 0 100 100"><defs><clipPath id="cc"><circle cx="50" cy="50" r="44"/></clipPath></defs><g clip-path="url(#cc)"><rect width="50" height="100" fill="#A50044"/><rect x="50" width="50" height="100" fill="#004D98"/></g><circle cx="50" cy="50" r="44" fill="none" stroke="#EDBB00" stroke-width="4"/><text x="50" y="61" text-anchor="middle" fill="#F5F5F5" font-size="30" font-weight="900" font-family="Montserrat,sans-serif">XXI</text></svg>
+<p class="hd" style="font-size:1.6rem">Mes que un club</p>
+<p style="margin:1rem 0"><a href="#">Instagram</a><a href="#">X</a><a href="#">YouTube</a></p>
+<p style="color:#6f788f;font-size:.78rem">© 2026 Неофициальный фан-проект, некоммерческий. Не связан с FC Barcelona. Все товарные знаки принадлежат их владельцам. Данные — по состоянию на конец сезона 2025/26.</p>
+</footer>
+
+<div id="md"><div id="mb"></div></div>
+
+<script>
+const $=s=>document.querySelector(s);
+$("#bg").onclick=()=>{$("#ov").classList.toggle("on")};
+document.querySelectorAll("#ov a").forEach(a=>a.onclick=()=>$("#ov").classList.remove("on"));
+const Y=[
+["2006","Лига чемпионов + Ла Лига","Пуйоль","Райкард",["Финал в Париже: «Арсенал» 2:1","Голы: Это’О, Беллетти","Ла Лига 2005/06 — второй титул подряд"]],
+["2009","Секстабль","Пуйоль","Гвардиола",["Финал в Риме: «Манчестер Юнайтед» 2:0","Голы: Это’О, Месси","6 трофеев за один календарный год"]],
+["2011","Лига чемпионов + Ла Лига","Пуйоль","Гвардиола",["«Уэмбли»: «Манчестер Юнайтед» 3:1","Голы: Педро, Месси, Вилья","Третья победа в ЛЧ за шесть лет"]],
+["2015","Требл","Хави","Луис Энрике",["Берлин: «Ювентус» 3:1","Голы: Ракитич, Суарес, Неймар","МСН забили 122 гола за сезон"]],
+["2018","Ла Лига + Кубок Испании","Иньеста","Вальверде",["Чемпионат без поражений","Финал Кубка: «Севилья» 5:0","Прощальный сезон Иньесты"]],
+["2023","Ла Лига + Суперкубок","Бускетс","Хави",["27-й титул чемпиона Испании","Суперкубок: «Реал» 3:1 в Эр-Рияде","Эра Бускетса и Альбы завершается"]]];
+$("#track").innerHTML=Y.map((y,i)=>`<button class="yc" data-i="${i}"><div class="y">${y[0]}</div><h3 style="font-size:1.1rem;margin-top:.8rem">${y[1]}</h3><em>Капитан: ${y[2]} · ${y[3]}</em></button>`).join("");
+document.querySelectorAll(".yc").forEach(b=>b.onclick=()=>{const y=Y[b.dataset.i];$("#mb").innerHTML=`<div class="duo">${y[0]}</div><div class="in"><p class="tag">${y[1]}</p><h3 style="font-size:1.6rem;margin:.4rem 0">Капитан: ${y[2]}</h3><p style="color:#98a1b8;font-size:.85rem">Тренер: ${y[3]}</p><ul>${y[4].map(x=>`<li>${x}</li>`).join("")}</ul><button class="btn" style="margin-top:1.3rem" onclick="md.classList.remove('on')">Закрыть</button></div>`;md.classList.add("on")});
+md.onclick=e=>{if(e.target===md)md.classList.remove("on")};
+const L=[["Месси","10","778 матчей, 672 гола — рекорд клуба. 6 «Золотых мячей» в роли игрока «Барсы»."],["Хави","6","767 матчей, 25 трофеев. Дирижёр тики-таки, позже тренер клуба."],["Иньеста","8","674 матча. Гол на «Стэмфорд Бридж» 2009 и 9 титулов Ла Лиги."],["Пуйоль","5","593 матча. Капитан трёх побед в Лиге чемпионов."],["Пике","3","616 матчей. Опора обороны эпохи Гвардиолы и Луиса Энрике."],["Бускетс","16","722 матча. Якорь полузащиты и капитан в 2023-м."],["Альба","18","459 матчей. Скорость левого фланга и 6 титулов Ла Лиги."]];
+$("#lg").innerHTML=L.map(p=>`<article class="pc" tabindex="0"><div class="m">${p[1]}</div><h3 style="font-size:1.5rem">${p[0]}</h3><p class="t">${p[2]}</p></article>`).join("");
+// tiki-taka
+const N=[[200,190],[90,130],[310,130],[140,50],[260,50],[200,110]],names=["Бускетс","Хави","Иньеста","Месси","Пике","Педро"];
+$("#ln").innerHTML=N.flatMap((a,i)=>N.slice(i+1).map(b=>`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke-dasharray="4 4" opacity=".45"/>`)).join("");
+$("#nd").innerHTML=N.map((n,i)=>`<circle cx="${n[0]}" cy="${n[1]}" r="15" fill="#A50044" stroke="#F5F5F5"/><text x="${n[0]}" y="${n[1]+30}" fill="#F5F5F5" font-size="10" text-anchor="middle">${names[i]}</text>`).join("");
+function pass(){if(!window.gsap)return;let tl=gsap.timeline(),c=0;for(let i=0;i<7;i++){let n;do{n=Math.floor(Math.random()*6)}while(n===c);c=n;tl.to("#bl",{attr:{cx:N[n][0],cy:N[n][1]},duration:.45,ease:"power1.inOut"})}}
+$("#tk").onclick=pass;
+// content
+const CO=[["2003–2008","Франк Райкард","Вернул чемпионство и привёл клуб к Лиге чемпионов 2006. Построил команду вокруг Рональдиньо, а затем Месси: 2 титула Ла Лиги и 2 Суперкубка Испании."],["2008–2012","Хосеп Гвардиола","14 трофеев за четыре года: секстабль 2009, две Лиги чемпионов, три чемпионства. Создал самый влиятельный стиль футбола XXI века."],["2012–2013","Тито Виланова","Помощник Пепа. Привёл клуб к чемпионству 2012/13 со 100 очками, после чего ушёл из-за болезни."],["2013–2014","Херардо Мартино","Суперкубок Испании 2013, но в мае 2014-го титул ушёл «Атлетико» прямо на «Камп Ноу»."],["2014–2017","Луис Энрике","9 трофеев за три сезона: требл 2015, дубль 2016, Кубок 2017. Эпоха МСН и чудо 6:1 над ПСЖ."],["2017–2020","Эрнесто Вальверде","Два чемпионства подряд, Кубок и Суперкубок Испании 2018, но болезненные вылеты в Риме и Ливерпуле."],["2020","Кике Сетьен","Короткий период, завершившийся 2:8 от «Баварии» в Лиссабоне."],["2020–2021","Рональд Куман","Время перехода: Кубок Испании 2021 (4:0 «Атлетику») стал последним трофеем с Месси."],["2021–2024","Хави Эрнандес","Вернул чемпионство в 2023-м и выиграл Суперкубок Испании, работая в условиях финансовой реконструкции клуба."],["2024–","Ханси Флик","Высокая линия обороны и ставка на Ла Масию: в 2025-м — Ла Лига, Кубок и Суперкубок Испании."]];
+const WN=[["6:2","«Реал» · Бернабеу","2 мая 2009","Месси в роли ложной «девятки» и один из главных Класико в истории. Через четыре недели — Рим."],["1:1","«Челси» · Стэмфорд Бридж","6 мая 2009","Гол Иньесты на 93-й минуте вывел клуб в финал Лиги чемпионов."],["5:0","«Реал» · Камп Ноу","29 ноября 2010","Дебютное Класико Моуринью и эталонная демонстрация тики-таки."],["3:1","«Ювентус» · Берлин","6 июня 2015","Голы Ракитича, Суареса и Неймара. Барса — первый европейский клуб с двумя треблами."],["6:1","ПСЖ · Камп Ноу","8 марта 2017","После 0:4 в Париже. Гол Серхи Роберто на 95-й минуте — легендарная «Реманада»."],["5:2","«Реал» · Джидда","12 января 2025","Финал Суперкубка Испании: уверенная победа команды Флика над вечным соперником."]];
+const FL=[["Май 2014","Титул уходит «Атлетико»","1:1 на «Камп Ноу» в последнем туре: чемпионство уехало в Мадрид."],["10 апреля 2018","Рим: 0:3","После 4:1 в первом матче «Рома» вышла в полуфинал Лиги чемпионов."],["7 мая 2019","Ливерпуль: 0:4","После 3:0 на «Камп Ноу» команда проиграла на «Энфилде»."],["14 августа 2020","Лиссабон: 2:8","Разгром от «Баварии» в четвертьфинале Лиги чемпионов."],["2021–2023","Две группы ЛЧ без плей-офф","Вылеты из группы два сезона подряд на фоне финансового кризиса и ухода Месси."],["Май 2025","«Интер»: 6:7 по сумме","Полуфинал ЛЧ: 3:3 дома и 3:4 в дополнительное время в Милане."]];
+const EV=[["2003","Лапорта становится президентом, Райкард — тренером."],["2008","Гвардиола возглавляет основу, начинается эра тики-таки."],["2012","Гвардиола уходит. Месси забивает 91 гол за календарный год."],["2014","Формируется трио МСН: Месси, Суарес, Неймар."],["2017","Неймар уходит в ПСЖ за 222 млн евро."],["2018","Иньеста покидает клуб после 22 лет."],["2020","Бартомеу уходит в отставку. Месси заявляет о желании уйти."],["2021","Лапорта возвращается к власти, Месси уходит."],["2022","Пике завершает карьеру."],["2023","Уходят Бускетс и Альба. На время реконструкции «Камп Ноу» команда переезжает на «Монжуик»."],["2024","Ямаль — чемпион Европы в 17 лет."],["2025","Флик выигрывает все три национальных трофея."],["2026","Барса защищает чемпионство: 29-й титул Ла Лиги, 10 мая, 2:0 «Реалу» на обновлённом «Камп Ноу». В ЛЧ и Кубке сильнее оказался «Атлетико»."]];
+$("#co").innerHTML=CO.map((c,i)=>`<div class="card cl" data-k="co" data-i="${i}" tabindex="0"><p class="tag">${c[0]}</p><h3 style="font-size:1.2rem;margin:.4rem 0">${c[1]}</h3><p>${c[2]}</p></div>`).join("");
+$("#wn").innerHTML=WN.map((c,i)=>`<div class="card cl" data-k="wn" data-i="${i}" tabindex="0"><div class="sco">${c[0]}</div><h3 style="font-size:1.05rem;margin:.6rem 0 .2rem">${c[1]}</h3><p class="tag" style="font-size:.65rem">${c[2]}</p><p>${c[3]}</p></div>`).join("");
+$("#fl").innerHTML=FL.map((c,i)=>`<div class="card cl" data-k="fl" data-i="${i}" tabindex="0"><div class="tag" style="color:#ff6b9a">${c[0]}</div><h3 style="font-size:1.1rem;margin:.5rem 0">${c[1]}</h3><p>${c[2]}</p></div>`).join("");
+const TA=[['2007','Ламин Ямаль','Правый вингер · Ла Масия'],['2002','Педри','Полузащитник · из Лас-Пальмаса'],['2004','Гави','Полузащитник · Ла Масия'],['2007','Пау Кубарси','Центральный защитник · Ла Масия'],['2003','Алехандро Балде','Левый защитник · Ла Масия']];
+const DET={co:[
+['Голландец пришёл в клуб, несколько лет жившем без трофеев, и за пять лет вернул ему уверенность и титулы.',['Ла Лига 2004/05 и 2005/06','Лига чемпионов 2006: 2:1 над «Арсеналом» в Париже','Суперкубок Испании 2005 и 2006','Дал дорогу Месси: дебют 16 октября 2004','Ноябрь 2005: «Бернабеу» аплодирует Рональдиньо стоя','Сезоны 2006/07 и 2007/08 прошли без главных титулов']],
+['Бывший капитан и воспитанник Ла Масии построил на Месси, Хави и Иньесте самый влиятельный стиль футбола XXI века.',['Секстабль 2009','Лига чемпионов 2009 и 2011','Ла Лига 2008/09, 2009/10, 2010/11','Всего 14 трофеев: 3 Ла Лиги, 2 ЛЧ, 2 Кубка Испании, 3 Суперкубка Испании, 2 Суперкубка УЕФА, 2 Клубных ЧМ','Прессинг после потери мяча и Месси в роли ложной «девятки»','Ушёл в 2012 году, сославшись на усталость']],
+['Многолетний помощник Пепа взял команду в трудный момент и не дал ей потерять уровень.',['Ла Лига 2012/13: 100 очков','Месси забил 46 мячей в чемпионате','Полуфинал ЛЧ 2013: 0:4 и 0:3 от «Баварии»','Сезон омрачила болезнь тренера','В июле 2013-го ушёл ради лечения']],
+['Аргентинец пришёл, когда команда стояла на пороге перемен, но сезон закончился без главных трофеев.',['Суперкубок Испании 2013 (против «Атлетико»)','Финал Кубка Испании 2014: 1:2 от «Реала»','Четвертьфинал ЛЧ 2014: вылет от «Атлетико»','Чемпионство ушло в Мадрид в последнем туре']],
+['Бывший игрок «Барсы» дал команде вертикальный футбол и главный трофейный отрезок после эры Пепа.',['Требл 2015: Ла Лига, Кубок и Лига чемпионов','Дубль 2016 и Кубок Испании 2017','МСН забили 122 гола в сезоне 2014/15','Суперкубок УЕФА и Клубный ЧМ 2015, Суперкубок Испании 2016','Всего 9 трофеев за три сезона','Чудо 6:1 над ПСЖ в марте 2017']],
+['Прагматичный тренер сделал команду чемпионом, но Лигу чемпионов выиграть не смог.',['Ла Лига 2017/18 без поражений: 93 очка','Ла Лига 2018/19','Кубок Испании 2018 (5:0 «Севилье») и Суперкубок Испании 2018','Вылеты в Риме (2018) и Ливерпуле (2019)','Финал Кубка 2019 проигран «Валенсии» 1:2','Уволен в январе 2020']],
+['Приход Кике Сетьена не изменил кризис. Сезон прервала пандемия, а закончил его разгром в Лиссабоне.',['Назначен в январе 2020','Ла Лигу выиграл «Реал»','14 августа: 2:8 от «Баварии» в четвертьфинале ЛЧ','Уволен через несколько дней']],
+['Легенда клуба принял команду в разгар финансового кризиса и конфликта вокруг Месси.',['Как игрок забил победный гол в финале Кубка чемпионов 1992 года','Кубок Испании 2021: 4:0 «Атлетику»','Последний трофей Месси в «Барсе»','Ла Лига 2020/21: третье место','Уволен в октябре 2021-го']],
+['Воспитанник Ла Масии вернулся тренером в разгар перестройки и вернул клубу чемпионство.',['Назначен в ноябре 2021','Ла Лига 2022/23: 27-й титул, всего 20 пропущенных мячей','Суперкубок Испании 2023: 3:1 «Реалу»','ЛЧ 2023/24: четвертьфинал, вылет от ПСЖ','Завершил работу летом 2024-го']],
+['Немецкий специалист пришёл в 2024-м и сделал ставку на высокую линию обороны и молодёжь.',['До «Барсы» выиграл секстабль с «Баварией» в 2020-м','Сезон 2024/25: Ла Лига (28-й титул), Кубок Испании (3:2 «Реалу» в доп. время), Суперкубок (5:2)','Барса выиграла все четыре Класико сезона','Опора на Ямаля, Кубарси, Педри, Гави','Агрессивная высокая линия и игра в офсайд','Сезон 2025/26: второе подряд чемпионство (29-й титул, 10 мая 2026) и Суперкубок Испании; вылет от «Атлетико» в Кубке и ЛЧ']]],
+wn:[
+['Матч показал, что «Барса» Гвардиолы способна побеждать «Реал» на его поле.',['В сезоне 2008/09 «Барса» выиграла оба Класико: 2:0 дома и 6:2 в гостях','Месси сыграл ложную «девятку»: тактический ход, ставший легендой','Победа приблизила чемпионство 2008/09','Через четыре недели — финал в Риме']],
+['Ничья, которая стоила победы: «Барса» вышла в финал, имея на табло лишь один гол.',['В первом матче на «Камп Ноу» — 0:0','«Челси» вёл 1:0 почти весь матч','На 93-й минуте дальний удар Иньесты','Выход в финал по правилу выездных голов']],
+['Матч, который до сих пор показывают как пример идеального футбола.',['Голы: Хави, Педро, Вилья (дважды), Жеффрен','Дебютное Класико Жозе Моуринью в роли тренера «Реала»','Сезон 2010/11: Ла Лига и Лига чемпионов','Игру называют вершиной тики-таки']],
+['Финал в Берлине принёс вторую триплетную победу клуба.',['Ракитич забил на 4-й минуте, Суарес — на 68-й, Неймар — в добавленное время','Последний матч Хави за клуб','Требл Луиса Энрике: Ла Лига, Кубок, ЛЧ','Первый европейский клуб с двумя треблами']],
+['Единственный случай, когда команда прошла после поражения 0:4 в первом матче.',['Первый матч в Париже, 14 февраля 2017: 0:4','Неймар забил на 88-й и 91-й минутах','Серхи Роберто — на 95-й, победный гол','Матч стал символом веры и характера']],
+['Вершина первого сезона Флика: «Барса» вернула себе титул главного соперника «Реала».',['Финал Суперкубка Испании в Джидде, 12 января 2025','Победа 5:2','В сезоне 2024/25 «Барса» выиграла все три национальных трофея','Команда Флика обыграла «Реал» во всех четырёх Класико сезона']]],
+fl:[
+['Один из самых горьких финалов сезона: титул уехал, пока соперник праздновал на «Камп Ноу».',['17 мая 2014: 1:1 на «Камп Ноу», гол Година','Тренер «Атлетико» — Диего Симеоне','Через несколько недель — вылет из ЛЧ от того же «Атлетико»','Кубок Испании проигран «Реалу» 1:2']],
+['Классический пример того, как поражение в ответном матче перечёркивает победу в первом.',['Первый матч: 4:1 на «Камп Ноу»','Рим: голы Дзеко, Де Росси (с пенальти), Манолас','Выход «Ромы» по правилу выездных голов','Повторение сценария ещё через год']],
+['Вторая подряд катастрофа после победы 3:0 в первом матче.',['Первый матч: 3:0, штрафной Месси','На «Энфилде» «Ливерпуль» победил 4:0 без Салаха и Фирмино','Вейнальдум забил дважды за две минуты','Теперь это матч, который клуб помнит как урок']],
+['Самое тяжёлое поражение эпохи: матч-«одной игры» без зрителей из-за пандемии.',['Матч прошёл в Лиссабоне без зрителей','«Бавария» позже выиграла ЛЧ','Месси подал заявку на уход, клуб сменил тренера и президента','Начало периода кризиса и перестройки']],
+['Клуб, привыкший к плей-офф, дважды остался за его чертой.',['2021/22: третье место в группе после «Баварии» и «Бенфики», вылет в Лиге Европы от «Айнтрахта»','2022/23: группа с «Баварией» и «Интером», вылет в плей-офф Лиги Европы от «Манчестер Юнайтед»','Финансовый кризис и уход Месси','Основа для нового взлёта на Ла Масии']],
+['Полуфинал, в котором решали детали и концовки.',['Первый матч: 3:3 на «Монжуике»','Ответный: 3:4 в доп. время в Милане','«Барса» вела 3:2 за три минуты до конца основного времени','«Интер» сравнял на 93-й и выиграл в доп. время']]],
+ta:[
+['Самый яркий талант новой эры: в 15 лет дебютировал в основе и покорил Европу.',['Дебют 29 апреля 2023: 15 лет 290 дней','Чемпион Европы 2024, лучший молодой игрок турнира','Самый молодой автор гола на Евро','Kopa Trophy 2024','Вырос в Ла Масии и играет с 10-м номером']],
+['Дирижёр поколения: быстро стал ключевой фигурой и самым талантливым полузащитником Испании.',['Пришёл из Лас-Пальмаса в 2020 году','Golden Boy и Kopa Trophy 2021','Лучший молодой игрок Евро-2020 в 18 лет','Чемпион Европы 2024','Травмы замедлили путь, но класс остался']],
+['Сердце и характер новой команды: воспитанник Ла Масии, который в 17 лет уже играл за сборную.',['В Ла Масии с 2015 года, пришёл из академии «Бетиса»','Дебют за основу в августе 2021 года','Kopa Trophy 2022','Тяжёлая травма крестообразных связок в ноябре 2023','Вернулся в сезоне 2024/25']],
+['Лидер обороны будущего: в 16 лет стал основным центральным защитником.',['Воспитанник Ла Масии, игрок 2007 года','Закрепился в основе в сезоне 2023/24','Ключевой игрок обороны при Флике','Партнёр по возрасту — Ямаль']],
+['Скоростной защитник, выросший в академии и закрепившийся на левом фланге.',['Воспитанник академии клуба','Игрок основы с сезона 2022/23','Игрок высокой линии Флика','Часть волны: Ямаль, Гави, Кубарси, Балде']]]};
+const SRC={co:CO,wn:WN,fl:FL,ta:TA},MP={co:[1,0],wn:[1,2],fl:[1,0],ta:[1,2]};
+$('#ta').innerHTML=TA.map((c,i)=>`<div class='card cl' data-k='ta' data-i='${i}' tabindex='0'><div class='sco'>${c[0]}</div><p class='tag' style='font-size:.65rem'>год рождения</p><h3 style='font-size:1.15rem;margin:.5rem 0 .2rem'>${c[1]}</h3><p>${c[2]}</p></div>`).join('');
+function openD(c){const k=c.dataset.k,i=+c.dataset.i,s=SRC[k][i],d=DET[k][i],m=MP[k];$('#mb').innerHTML=`<div class='duo'>${s[0]}</div><div class='in'><p class='tag'>${s[m[1]]}</p><h3 style='font-size:1.5rem;margin:.4rem 0'>${s[m[0]]}</h3><p style='color:#c9cfdd;font-size:.93rem;line-height:1.6;margin-bottom:.4rem'>${d[0]}</p><ul>${d[1].map(x=>`<li>${x}</li>`).join('')}</ul><button class='btn' style='margin-top:1.3rem' onclick='md.classList.remove("on")'>Закрыть</button></div>`;md.classList.add('on')}
+document.addEventListener('click',e=>{const c=e.target.closest&&e.target.closest('.cl');if(c)openD(c)});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList&&e.target.classList.contains('cl'))openD(e.target);if(e.key==='Escape')md.classList.remove('on')});
+const CR=[['2017','Уход Неймара и охота за заменой','Неймар уходит в ПСЖ за 222 млн, а клуб тратит сотни миллионов на замену.'],['2018–2019','Дорогие трансферы без отдачи','Коутиньо, Дембеле, Гризманн: огромные суммы и скромный результат.'],['2020','Пандемия','Матчи без зрителей, падение доходов, а фонд зарплат остаётся прежним.'],['Август 2020','2:8 и конфликт с Месси','Разгром в Лиссабоне совпал с заявлением Месси об уходе.'],['Октябрь 2020','Отставка Бартомеу','Правление уходит под давлением членов клуба и скандалов.'],['Март 2021','Возвращение Лапорты','Выборы выиграны с обещанием удержать Месси и навести порядок в финансах.'],['Август 2021','Месси уходит','Клуб не смог зарегистрировать новый контракт из-за лимита зарплат.'],['2021–2022','Долг и режим экономии','Лимит Ла Лиги не позволяет регистрировать новых игроков.'],['2022','«Экономические рычаги»','Клуб продаёт часть будущих доходов, чтобы вернуться в игру.'],['2023','Дело Негрейры','Расследование платежей бывшему судейскому чиновнику; клуб отрицает нарушения.'],['2023–','Камп Ноу на реконструкции','Проект Espai Barça: новая арена и временный дом на «Монжуике».'],['2024–2025','Регистрационные драмы','Ольмо и Пау Виктор: лимит зарплат снова на пределе.'],['2025','Возрождение','Клуб, на краю пропасти, выигрывает все три национальных трофея.']];
+SRC.cr=CR;MP.cr=[1,0];
+DET.cr=[
+['После ухода Неймара клуб получил огромные деньги и не имел чёткой стратегии.',['Неймар перешёл в ПСЖ за 222 млн евро в августе 2017','Вместо одного лидера клуб покупал сразу нескольких звёзд','Дембеле (105 млн + бонусы) и Коутиньо (около 120 млн + бонусы)','Ставка на готовых звёзд вместо Ла Масии']],
+['Крупные покупки не окупились ни на поле, ни в бухгалтерии.',['Дембеле: до 145 млн евро с бонусами','Коутиньо: до 160 млн евро с бонусами; позже отдан в аренду в «Баварию»','Гризманн: около 120 млн евро, в 2021-м вернулся в «Атлетико»','Зарплаты и амортизация легли тяжёлым грузом на бюджет']],
+['Пандемия COVID-19 ударила по клубу с огромными расходами сильнее, чем по большинству.',['Матчи без зрителей в сезоне 2020/21: потеря доходов от билетов','Выручка падала, а фонд зарплат оставался огромным','Игроки соглашались на временное снижение и отсрочку зарплат','Первый масштабный сигнал о системной проблеме']],
+['Поражение 2:8 совпало с открытым конфликтом вокруг Месси.',['Месси направил заявление об уходе в августе 2020','Клуб отказался отпускать его без выплаты отступных','Конфликт вынес наружу проблемы управления','Месси остался ещё на один сезон']],
+['Правление Жозепа Бартомеу ушло в отставку под давлением членов клуба.',['27 октября 2020: отставка всего правления','Поводом стали недоверие членов клуба, конфликт с Месси и скандал вокруг соцсетей','Клуб возглавила временная комиссия','Позже скандал («Баркагейт») расследовали отдельно']],
+['Лапорта вернулся с обещанием удержать Месси и оздоровить бюджет.',['7 марта 2021: выборы, победа с большим отрывом','Обещания: продлить Месси и навести порядок в финансах','Новая команда нашла ситуацию тяжелее ожидаемой','Стало ясно: нужен долгосрочный план']],
+['Клуб не смог зарегистрировать новый контракт Месси из-за лимита зарплат Ла Лиги.',['5 августа 2021: клуб объявил, что контракт невозможен из-за финансовых и структурных препятствий','8 августа: слёзы Месси на прощальной пресс-конференции','Месси перешёл в ПСЖ','Конец эпохи, начавшейся в 2004-м']],
+['Новое руководство называло долг рекордным и жило под давлением лимита зарплат.',['По оценке руководства, общий долг достигал около 1,35 млрд евро','Лимит зарплат Ла Лиги не позволял регистрировать новых игроков','Клуб продавал или отпускал звёзд, чтобы снизить фонд зарплат','Принят план экономии и обновления состава']],
+['Чтобы вернуться к конкурентоспособности, клуб продал часть будущих доходов.',['Продажа доли будущих телеправ Ла Лиги инвестиционному фонду','Продажа доли в Barça Studios','Эти «рычаги» дали сотни миллионов евро','Лето 2022: Левандовский, Кунде, Рафинья, Кристенсен, Кессье','Критика: клуб продаёт будущее ради настоящего']],
+['Расследование платежей добавило клубу репутационных проблем.',['Речь о платежах компаниям Хосе Марии Энрикеса Негрейры, бывшего вице-президента судейского комитета','Сумма в разных источниках — от 7,3 до 8,4 млн евро за 2001–2018 годы','Клуб утверждает, что платил за консультации, и отрицает покупку судей','Расследование идёт в Испании, успела открыть проверку и УЕФА; решения по существу пока нет (по данным на ноябрь 2026)']],
+['Камп Ноу закрылся на реконструкцию: самый амбициозный проект в истории клуба.',['Проект Espai Barça стоимостью около 1,5 млрд евро','В 2023–2025 команда играла на «Олимпийском» на «Монжуике», а в сезоне 2025/26 вернулась на обновлённый «Камп Ноу»','Новая арена рассчитана примерно на 105 тысяч мест','Проект финансируется кредитами и инвесторами']],
+['Лимит зарплат снова дал о себе знать.',['Дани Ольмо и Пау Виктор не получали регистрацию на рубеже 2024–2025','Вопрос решился через суд и решение федерации в январе 2025','Показал, что клуб всё ещё живёт на грани лимита']],
+['Кризис не помешал победам: кризис стал топливом для возрождения.',['Ла Лига, Кубок Испании и Суперкубок Испании в 2025-м','Команда построена на воспитанниках Ла Масии','Ямаль, Кубарси, Гави, Педри — новая опора','Клуб снова на вершине Испании']]];
+$('#crl').innerHTML='<div class=ln2></div>'+CR.map((c,i)=>`<div class='card cl' data-k='cr' data-i='${i}' tabindex='0'><p class='tag' style='color:${i>11?'var(--gold)':'#ff6b9a'}'>${c[0]}</p><h3 style='font-size:1.15rem;margin:.4rem 0'>${c[1]}</h3><p>${c[2]}</p></div>`).join('');
+$("#evs").innerHTML=EV.map(e=>`<div><b>${e[0]}</b><span>${e[1]}</span></div>`).join("");
+// game: поз|рейтинг|Ла Масия|эры (R Райкард, P Пеп, M 2012–20, N с 2020). Рейтинги — авторская оценка
+const D="Вальдес|g|86|1|RPM;Тер Штеген|g|90|0|MN;Алвес|d|88|0|PM;Пуйоль|d|90|1|RPM;Пике|d|88|1|PMN;Алба|d|87|0|MN;Маскерано|d|86|0|PM;Кубарси|d|82|1|N;Бускетс|m|91|1|PMN;Хави|m|93|1|RPM;Иньеста|m|94|1|RPM;Педри|m|88|0|N;Гави|m|84|1|N;Деку|m|86|0|R;Фабрегас|m|86|1|PM;Ракитич|m|85|0|M;Месси|f|97|1|RPMN;Рональдиньо|f|93|0|R;Это’О|f|90|0|RP;Анри|f|88|0|RP;Суарес|f|90|0|MN;Неймар|f|90|0|M;Ямаль|f|88|1|N".split(";").map(s=>{const a=s.split("|");return{n:a[0],g:a[1],o:+a[2],m:+a[3],e:a[4]}});
+const S=[["g",50,90],["d",16,72],["d",38,74],["d",62,74],["d",84,72],["m",25,50],["m",50,56],["m",75,50],["f",20,22],["f",50,14],["f",80,22]],GL={g:"ВРТ",d:"ЗАЩ",m:"ПЗ",f:"НАП"},GN={g:"Вратарь",d:"Защита",m:"Полузащита",f:"Атака"},EN={R:"эры Райкарда",P:"эры Гвардиолы",M:"эры МСН",N:"новой эры"};
+let st=Array(11).fill(null),sel=null;
+const pl=n=>D.find(p=>p.n===n);
+function put(i,n){const p=pl(n);if(!p)return;if(p.g!==S[i][0]){msg.textContent=p.n+": здесь нужен игрок другой линии";return}st[i]=n;sel=null;draw()}
+function draw(){pitch.innerHTML=S.map((s,i)=>`<div class="sl ${st[i]?"f":""}" data-i="${i}" style="left:${s[1]}%;top:${s[2]}%">${st[i]||GL[s[0]]}</div>`).join("");
+pool.innerHTML="gdmf".split("").map(g=>`<p class="pg">${GN[g]}</p>`+D.filter(p=>p.g===g&&!st.includes(p.n)).map(p=>`<span class="chip ${sel===p.n?"s":""}" draggable="true" data-p="${p.n}">${p.n} · ${p.o}</span>`).join("")).join("");
+const n=st.filter(Boolean).length;msg.textContent=n+" из 11";ev.disabled=n<11;res.style.display="none";
+pool.querySelectorAll(".chip").forEach(c=>{c.onclick=()=>{sel=sel===c.dataset.p?null:c.dataset.p;draw()};c.ondragstart=e=>e.dataTransfer.setData("t",c.dataset.p)});
+pitch.querySelectorAll(".sl").forEach(s=>{const i=+s.dataset.i;s.ondragover=e=>{e.preventDefault();s.classList.add("ov")};s.ondragleave=()=>s.classList.remove("ov");
+s.ondrop=e=>{e.preventDefault();put(i,e.dataTransfer.getData("t"))};
+s.onclick=()=>{if(sel)put(i,sel);else{st[i]=null;draw()}}})}
+function judge(){const T=st.map(pl),avg=T.reduce((a,p)=>a+p.o,0)/11,ma=T.filter(p=>p.m).length,ec={R:0,P:0,M:0,N:0};
+T.forEach(p=>[...p.e].forEach(k=>ec[k]++));
+const [ek,en]=Object.entries(ec).sort((a,b)=>b[1]-a[1])[0],eb=en>=9?8:en>=7?5:en>=5?2:0;
+const A=g=>{const x=T.filter(p=>p.g===g);return x.reduce((a,p)=>a+p.o,0)/x.length},ls=["g","d","m","f"].map(g=>[g,A(g)]).sort((a,b)=>b[1]-a[1]);
+const sc=Math.min(100,Math.round(avg*.85+ma+eb)),ti=sc>=90?"Идеальная команда":sc>=84?"Легендарный состав":sc>=76?"Уровень топ-клуба":"Есть куда расти";
+const tip=ma<5?"Добавьте воспитанников Ла Масии: философия клуба держится на них.":en<7?"Игроки из разных эр: составу не хватает общей игровой истории.":"Состав цельный: стиль, эпоха и Ла Масия работают на вас.";
+res.style.display="block";
+res.innerHTML=`<p class="tag">Анализ состава</p><div class="sco" style="font-size:4rem;margin:.4rem 0">${sc}<small style="font-size:1rem;color:#98a1b8"> / 100</small></div><h3 style="font-size:1.4rem;margin-bottom:1rem">${ti}</h3>`+["g","d","m","f"].map(g=>`<div style="display:flex;justify-content:space-between;font-size:.85rem"><span>${GN[g]}</span><b>${Math.round(A(g))}</b></div><div class="bar"><i style="width:${Math.max(5,(A(g)-70)*4)}%"></i></div>`).join("")+`<ul><li>Сильнейшая линия: ${GN[ls[0][0]].toLowerCase()} (${Math.round(ls[0][1])}).</li><li>Слабое место: ${GN[ls[3][0]].toLowerCase()} (${Math.round(ls[3][1])}).</li><li>Ла Масия: ${ma} из 11 воспитанников.</li><li>Химия: ${en} игроков из ${EN[ek]}.</li><li>${tip}</li></ul><p style="color:#98a1b8;font-size:.75rem;margin-top:1rem">Рейтинги — авторская оценка проекта, не официальная.</p>`;
+if(window.gsap)gsap.from(res,{opacity:0,y:30,duration:.6});res.scrollIntoView({behavior:"smooth",block:"center"})}
+ev.onclick=judge;rs.onclick=()=>{st=Array(11).fill(null);sel=null;draw()};draw();
+// motion
+if(window.gsap&&window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);
+gsap.to(".h-bg",{yPercent:35,ease:"none",scrollTrigger:{trigger:"#hero",scrub:true,start:"top top",end:"bottom top"}});
+gsap.to(".stripes",{yPercent:-18,ease:"none",scrollTrigger:{trigger:"#hero",scrub:true,start:"top top",end:"bottom top"}});
+gsap.utils.toArray(".card,.h2,.lead,.pc,.tl div,blockquote,.vs").forEach(e=>gsap.from(e,{opacity:0,y:40,duration:.8,scrollTrigger:{trigger:e,start:"top 90%"}}));
+ScrollTrigger.matchMedia({"(min-width:768px)":()=>{const t=$("#track");gsap.to(t,{x:()=>-(t.scrollWidth-innerWidth),ease:"none",scrollTrigger:{trigger:"#trophies",start:"top top",end:()=>"+="+t.scrollWidth,pin:true,scrub:1,invalidateOnRefresh:true}})}})}
+const b=$("#ball");addEventListener("pointermove",e=>{b.style.left=e.clientX+"px";b.style.top=e.clientY+"px"});
+addEventListener("pointerover",e=>{b.style.transform=e.target.closest&&e.target.closest("a,button,.yc,.chip,.sl")?"scale(1.8)":"scale(1)"});
+if(window.gsap&&window.ScrollTrigger){
+gsap.to("#pr",{scaleX:1,ease:"none",scrollTrigger:{start:0,end:"max",scrub:.2}});
+gsap.from("#hero h1,#hero .tag,#hero .btn",{y:50,opacity:0,duration:1,stagger:.2,delay:.2});
+document.querySelectorAll(".cnt").forEach(c=>{const o={v:0};gsap.to(o,{v:+c.dataset.n,duration:1.6,ease:"power2.out",scrollTrigger:{trigger:c,start:"top 92%",once:true},onUpdate:()=>c.textContent=Math.round(o.v)})});
+if(matchMedia("(hover:hover)").matches)document.querySelectorAll(".card").forEach(c=>{c.onpointermove=e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;gsap.to(c,{rotateY:x*8,rotateX:-y*8,transformPerspective:600,duration:.3})};c.onpointerleave=()=>gsap.to(c,{rotateX:0,rotateY:0,duration:.5})});
+document.querySelectorAll('.cn2').forEach(c=>{const o={v:0},n=+c.dataset.n,d=+c.dataset.d||0;gsap.to(o,{v:n,duration:2,ease:'power2.out',scrollTrigger:{trigger:c,start:'top 92%',once:true},onUpdate:()=>c.textContent=o.v.toFixed(d).replace('.',',')})});
+gsap.to('.fg',{strokeDashoffset:0,duration:2,ease:'power2.out',scrollTrigger:{trigger:'.ring',start:'top 90%',once:true}});
+document.querySelectorAll('.bt i').forEach(i=>gsap.to(i,{width:i.dataset.w+'%',duration:1.4,ease:'power3.out',scrollTrigger:{trigger:i,start:'top 92%',once:true}}));
+gsap.to('.ln2',{scaleY:1,ease:'none',scrollTrigger:{trigger:'#crl',start:'top 70%',end:'bottom 70%',scrub:true}});
+ScrollTrigger.refresh()}
+</script>
+</body>
+</html>
